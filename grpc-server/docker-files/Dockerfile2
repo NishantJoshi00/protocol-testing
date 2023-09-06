@@ -1,0 +1,18 @@
+FROM rust:slim-bookworm as builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y protobuf-compiler libprotobuf-dev
+
+RUN cargo build --bin grpc --features grpc --release
+
+FROM debian:bookworm-slim
+
+COPY --from=builder /app /app
+
+WORKDIR /app
+
+CMD [ "/app/target/release/grpc" ]

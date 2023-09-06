@@ -1,0 +1,34 @@
+[package]
+name = "grpc-server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+# default = ["http"]
+grpc = ["dep:tonic", "dep:prost", "dep:tonic-build"]
+http = ["dep:axum", "dep:serde", "dep:serde_json"]
+
+[[bin]]
+name = "grpc"
+required-features = ["grpc"]
+
+
+[[bin]]
+name = "http"
+required-features = ["http"]
+
+[dependencies]
+tonic = { version = "*", optional = true }
+prost = { version = "*", optional = true }
+axum = { version = "*", optional = true }
+serde = { version = "*", optional = true, features = ["derive"] }
+serde_json = { version = "*", optional = true }
+tokio = { version = "*", features = ["macros", "rt-multi-thread"] }
+time = { version = "*", features = ["formatting"] }
+base64 = "*"
+
+[build-dependencies]
+tonic-build = { version = "*", optional = true }
+
