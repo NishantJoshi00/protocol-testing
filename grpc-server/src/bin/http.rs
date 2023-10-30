@@ -28,7 +28,7 @@ fn current_time() -> Result<String, axum::Error> {
 
     let format =
         time::format_description::parse("[year]-[month]-[day] [hour]:[minute]:[second] UTC")
-            .map_err(|_| axum::Error::new("failed while building time format"))?;
+            .map_err(|_| axum::Error::new("failed while building time format"));
 
     current
         .format(&format)

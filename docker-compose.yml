@@ -5,33 +5,33 @@ networks:
   test_net:
   grafana:
 services:
-  haskell_http_server:
-    image: hs-test-server
-    ports:
-      - "8080:8080"
-    networks:
-      - test_net
-    profiles:
-      - http-hs
-    cpu_count: ${CORES}
-  rust_http_server:
-    image: rs-test-server-http
-    ports:
-      - "8080:8080"
-    networks:
-      - test_net
-    profiles:
-      - http-rs
-    cpu_count: ${CORES}
-  rust_grpc_server:
-    image: rs-test-server-grpc
-    ports:
-      - "8080:8080"
-    networks:
-      - test_net
-    profiles:
-      - grpc
-    cpu_count: ${CORES}
+  # haskell_http_server:
+  #   image: hs-test-server
+  #   ports:
+  #     - "8080:8080"
+  #   networks:
+  #     - test_net
+  #   profiles:
+  #     - http-hs
+  #   cpu_count: ${CORES}
+  # rust_http_server:
+  #   image: rs-test-server-http
+  #   ports:
+  #     - "8080:8080"
+  #   networks:
+  #     - test_net
+  #   profiles:
+  #     - http-rs
+  #   cpu_count: ${CORES}
+  # rust_grpc_server:
+  #   image: rs-test-server-grpc
+  #   ports:
+  #     - "8080:8080"
+  #   networks:
+  #     - test_net
+  #   profiles:
+  #     - grpc
+  #   cpu_count: ${CORES}
   influxdb:
     image: influxdb:1.8
     networks:
